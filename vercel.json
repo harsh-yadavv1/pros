@@ -1,3 +1,7 @@
 {
-  "includeFiles": ["public/posts/**"]
+  "functions": {
+    "api/**.js": {
+      "includeFiles": ["public/posts/**"]
+    }
+  }
 }
