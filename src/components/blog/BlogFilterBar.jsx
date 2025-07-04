@@ -52,7 +52,7 @@ export default function BlogFilterBar({ categories = [], onFilter }) {
   const clearSearch = () => setSearch("");
 
   return (
-    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-0 pt-0 mt-[88px] md:mt-[96px] scroll-mt-[96px] w-full">
+    <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-0 mt-20 md:mt-24 scroll-mt-24">
       {/* Search Bar */}
       <div className="space-y-0 md:space-y-8 w-full">
         <div className="w-full relative group">

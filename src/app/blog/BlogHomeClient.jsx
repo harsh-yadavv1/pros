@@ -114,26 +114,27 @@ export default function BlogHomeClient() {
 
         <section
           id="latest-posts"
-          className="max-w-7xl mx-auto px-4 py-12 scroll-mt-[96px]"
+          className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-24"
         >
-          <h2 className="text-3xl font-semibold mb-6 text-[var(--main-color)]">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-[var(--main-color)]">
             Latest Posts
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visiblePosts.map((post) => (
               <BlogCard key={post.slug} post={post} highlight={search} />
             ))}
           </div>
 
           {visibleCount < filteredPosts.length && (
-            <div className="mt-10 px-4">
+            <div className="mt-10 px-4 sm:px-0">
               <button
                 onClick={handleLoadMore}
-                className="w-full px-6 py-3 rounded-full border bg-[var(--portfolio-bg-color)] text-[var(--main-color)] font-semibold transition 
-                hover:bg-[var(--main-color)] hover:text-[var(--portfolio-bg-color)] 
-                active:bg-[var(--main-color)] active:text-[var(--portfolio-bg-color)] 
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main-color)]"
+                className="w-full max-w-sm mx-auto block px-6 py-3 rounded-full border 
+        bg-[var(--portfolio-bg-color)] text-[var(--main-color)] font-semibold transition 
+        hover:bg-[var(--main-color)] hover:text-[var(--portfolio-bg-color)] 
+        active:bg-[var(--main-color)] active:text-[var(--portfolio-bg-color)] 
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main-color)]"
               >
                 {visibleCount < 18 ? "Load More ➞" : "View All Posts ➞"}
               </button>

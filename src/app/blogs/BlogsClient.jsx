@@ -93,18 +93,18 @@ export default function BlogsPage() {
         onFilter={handleFilter}
       />
 
-      <main className="flex-grow">
-        <section className="max-w-7xl mx-auto px-4 py-12">
-          <h2 className="text-3xl font-semibold mb-6 text-[var(--main-color)]">
+      <main className="flex-grow w-full">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-[var(--main-color)]">
             All Blog Posts
           </h2>
 
           {paginatedPosts.length === 0 ? (
-            <p className="text-[var(--portfolio-text-color)]/60">
+            <p className="text-base text-[var(--portfolio-text-color)]/60">
               No posts found.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {paginatedPosts.map((post) => (
                 <BlogCard key={post.slug} post={post} highlight={search} />
               ))}
@@ -112,11 +112,13 @@ export default function BlogsPage() {
           )}
 
           {totalPages > 1 && (
-            <BlogPagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
+            <div className="mt-10">
+              <BlogPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
           )}
         </section>
       </main>
