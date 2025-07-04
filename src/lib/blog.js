@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-// ✅ Get all posts using index.json and fetch
+// ✅ Get all posts using index.json and public folder
 export async function getAllPosts() {
   const baseUrl =
     typeof window === "undefined"
@@ -11,33 +11,40 @@ export async function getAllPosts() {
 
   try {
     const indexRes = await fetch(`${baseUrl}/posts/index.json`);
+    if (!indexRes.ok) throw new Error("index.json not found");
     const slugs = await indexRes.json();
 
     const posts = await Promise.all(
       slugs.map(async (slug) => {
-        const res = await fetch(`${baseUrl}/posts/${slug}.md`);
-        if (!res.ok) return null;
+        try {
+          const res = await fetch(`${baseUrl}/posts/${slug}.md`);
+          if (!res.ok) return null;
 
-        const raw = await res.text();
-        const { data } = matter(raw);
+          const raw = await res.text();
+          const { data } = matter(raw);
 
-        return {
-          slug,
-          title: data.title || "Untitled Post",
-          date: data.date || null,
-          description: data.description || "",
-          image: data.image || null,
-          author: data.author || "Unknown",
-          category: data.category || "General",
-          views: data.views || 0,
-          readingTime: data.readingTime || "3 min read",
-          tags: data.tags || [],
-        };
+          return {
+            slug,
+            title: data.title || "Untitled Post",
+            date: data.date || null,
+            description: data.description || "",
+            image: data.image || null,
+            author: data.author || "Unknown",
+            category: data.category || "General",
+            views: data.views || 0,
+            readingTime: data.readingTime || "3 min read",
+            tags: data.tags || [],
+          };
+        } catch (err) {
+          console.error(`Error parsing ${slug}:`, err);
+          return null;
+        }
       })
     );
 
     return posts.filter(Boolean);
   } catch (err) {
+    console.error("Failed to load posts:", err);
     return [];
   }
 }
@@ -64,6 +71,7 @@ export async function getPostBySlug(slug) {
       ...data,
     };
   } catch (err) {
+    console.error("Failed to load post by slug:", slug, err);
     return null;
   }
 }
