@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAllPosts } from "@/lib/blog";
+
 import BlogLayout from "@/components/blog/BlogLayout";
 import BlogNavbar from "@/components/blog/BlogNavbar";
 import BlogFooter from "@/components/blog/BlogFooter";
@@ -24,17 +25,18 @@ export default function BlogHomeClient() {
   const search = searchParams.get("search") || "";
   const category = searchParams.get("category") || "All";
 
+  // 🔁 Fetch all posts on mount
   useEffect(() => {
-    async function loadPosts() {
+    (async () => {
       const posts = await getAllPosts();
       const valid = posts.filter(
         (post) => post && post.slug && post.title && post.image
       );
       setAllPosts(valid);
-    }
-    loadPosts();
+    })();
   }, []);
 
+  // 🔍 Filter posts based on search/category
   useEffect(() => {
     const filtered = allPosts.filter((post) => {
       const matchesSearch =
@@ -43,18 +45,17 @@ export default function BlogHomeClient() {
         post.tags?.some((tag) =>
           tag.toLowerCase().includes(search.toLowerCase())
         );
-
       const matchesCategory = category === "All" || post.category === category;
-
       return matchesSearch && matchesCategory;
     });
 
     setFilteredPosts(filtered);
-    setVisibleCount(POSTS_PER_PAGE); // reset on filter
+    setVisibleCount(POSTS_PER_PAGE);
   }, [allPosts, search, category]);
 
   const visiblePosts = filteredPosts.slice(0, visibleCount);
 
+  // 🌟 Featured logic
   const topFromCategory = [...filteredPosts]
     .filter((p) => typeof p.views === "number")
     .sort((a, b) => b.views - a.views)
@@ -72,15 +73,16 @@ export default function BlogHomeClient() {
     featuredPosts = [...topFromCategory, ...topGlobal];
   }
 
+  // 🎯 Filter handler
   const handleFilter = (searchText, selectedCategory) => {
     const params = new URLSearchParams();
     if (searchText) params.set("search", searchText);
-    if (selectedCategory && selectedCategory !== "All") {
+    if (selectedCategory && selectedCategory !== "All")
       params.set("category", selectedCategory);
-    }
-    router.push(`/blog?${params.toString()}`);
+    router.push(`/blog?${params.toString()}`, { scroll: false });
   };
 
+  // ➕ Load more handler
   const handleLoadMore = () => {
     if (visibleCount < 18) {
       setVisibleCount((prev) => prev + POSTS_PER_PAGE);
@@ -89,7 +91,7 @@ export default function BlogHomeClient() {
       if (search) params.set("search", search);
       if (category && category !== "All") params.set("category", category);
       params.set("page", "3");
-      router.push(`/blogs?${params.toString()}`);
+      router.push(`/blogs?${params.toString()}`, { scroll: false });
     }
   };
 
@@ -131,10 +133,10 @@ export default function BlogHomeClient() {
               <button
                 onClick={handleLoadMore}
                 className="w-full max-w-sm mx-auto block px-6 py-3 rounded-full border 
-        bg-[var(--portfolio-bg-color)] text-[var(--main-color)] font-semibold transition 
-        hover:bg-[var(--main-color)] hover:text-[var(--portfolio-bg-color)] 
-        active:bg-[var(--main-color)] active:text-[var(--portfolio-bg-color)] 
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main-color)]"
+                  bg-[var(--portfolio-bg-color)] text-[var(--main-color)] font-semibold transition 
+                  hover:bg-[var(--main-color)] hover:text-[var(--portfolio-bg-color)] 
+                  active:bg-[var(--main-color)] active:text-[var(--portfolio-bg-color)] 
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main-color)]"
               >
                 {visibleCount < 18 ? "Load More ➞" : "View All Posts ➞"}
               </button>

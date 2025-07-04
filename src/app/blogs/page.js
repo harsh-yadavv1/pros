@@ -1,11 +1,11 @@
 // src/app/blogs/page.js
 import { Suspense } from "react";
-import BlogsPage from "./BlogsClient";
+import BlogsClient from "./BlogsClient";
 
-export default function BlogsPageWrapper() {
+export default function BlogsPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <BlogsPage />
+      <BlogsClient />
     </Suspense>
   );
 }

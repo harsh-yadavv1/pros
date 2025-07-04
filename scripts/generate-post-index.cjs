@@ -1,3 +1,4 @@
+// scripts\generate-post-index.cjs
 const fs = require("fs");
 const path = require("path");
 

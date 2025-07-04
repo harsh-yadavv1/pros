@@ -1,4 +1,3 @@
-// src\app\[slug]\page.jsx
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -15,12 +14,11 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-// ✅ SEO metadata
+// ✅ Dynamic metadata for SEO
 export async function generateMetadata(props) {
-  const params = await props.params;
-  const slug = params.slug;
-
+  const { slug } = await props.params;
   const post = await getPostBySlug(slug);
+
   if (!post) {
     return {
       title: "Post Not Found | Harsh's Blog",
@@ -37,11 +35,9 @@ export async function generateMetadata(props) {
   };
 }
 
-// ✅ Blog post page
+// ✅ Blog Post Page
 export default async function BlogPostPage(props) {
-  const params = await props.params;
-  const slug = params.slug;
-
+  const { slug } = await props.params;
   const post = await getPostBySlug(slug);
   if (!post) return notFound();
 
@@ -63,12 +59,12 @@ export default async function BlogPostPage(props) {
         <div className="breadcrumb text-sm text-[var(--portfolio-text-color)]/60 mb-6">
           <a href="/" className="text-[var(--main-color)] hover:underline">
             Home
-          </a>{" "}
-          &gt;{" "}
+          </a>
+          &gt;
           <a href="/blog" className="text-[var(--main-color)] hover:underline">
             Blog
-          </a>{" "}
-          &gt;{" "}
+          </a>
+          &gt;
           <span className="text-[var(--portfolio-text-color)]/80">
             {post.title}
           </span>
