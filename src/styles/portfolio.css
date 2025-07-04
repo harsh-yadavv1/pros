@@ -1,0 +1,197 @@
+/* src/styles/portfolio.css */
+
+/* 🎨 Global Theme Variables */
+:root {
+  /* Shared Colors */
+  --portfolio-bg-color: #f5eedd;
+  --portfolio-text-color: #06202b;
+  --portfolio-secondary-bg: #ffffff;
+  --main-color: #077a7d;
+  --accent-color: #7ae2cf;
+  --white: #ffffff;
+  --black: #000000;
+  --text-light: #6c757d;
+  --text-lightt: #fffbeb;
+
+  /* Optional Blog-Specific Colors */
+  --blog-highlight: #0614178b;
+  --blog-glow: #00ffde;
+  --blog-txt: #00e5ff;
+}
+
+/* 🌙 Dark Mode Overrides */
+html.dark {
+  --portfolio-bg-color: #06202b;
+  --portfolio-text-color: #f5eedd;
+  --portfolio-secondary-bg: #0a0a0a;
+  --main-color: #7ae2cf;
+  --accent-color: #077a7d;
+  --text-lightt: #0b2f3d;
+}
+
+/* 🧱 Base Styling */
+body.portfolio-theme,
+.blog-theme {
+  background: var(--portfolio-bg-color);
+  color: var(--portfolio-text-color);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-color) transparent;
+}
+
+/* ✅ WebKit Scrollbar Styling */
+html::-webkit-scrollbar,
+html.portfolio-theme::-webkit-scrollbar,
+.blog-theme::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+html::-webkit-scrollbar-track,
+html.portfolio-theme::-webkit-scrollbar-track,
+.blog-theme::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb,
+html.portfolio-theme::-webkit-scrollbar-thumb,
+.blog-theme::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.3s ease;
+}
+
+/* Firefox Support */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-color) transparent;
+}
+
+/* 🔤 Headings */
+body.portfolio-theme h1,
+body.portfolio-theme h2,
+body.portfolio-theme h3,
+body.portfolio-theme h4,
+body.portfolio-theme h5,
+body.portfolio-theme h6,
+.blog-theme h1,
+.blog-theme h2,
+.blog-theme h3,
+.blog-theme h4,
+.blog-theme h5,
+.blog-theme h6 {
+  color: var(--portfolio-text-color);
+}
+
+/* 🔗 Links */
+body.portfolio-theme a,
+.blog-theme a {
+  color: var(--main-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+/* body.portfolio-theme a:hover,
+.blog-theme a:hover {
+  
+} */
+body.portfolio-theme a:focus,
+.blog-theme a:focus,
+.cv-button:focus {
+  outline: none;
+  outline-offset: 0;
+}
+
+/* 🧩 Section Background Utility */
+.section-bg {
+  background-color: var(--portfolio-secondary-bg);
+}
+
+/* ⌨️ Typewriter Cursor Animation */
+@keyframes blink {
+  0%,
+  100% {
+    border-color: var(--main-color);
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* 🌗 Dark Mode Toggle Icon Animation */
+.darkmode-toggle i {
+  transition: all 0.5s ease;
+  position: absolute;
+}
+html.dark .darkmode-toggle i.sun-icon {
+  opacity: 1;
+  margin-left: 21px;
+}
+html.dark .darkmode-toggle i.moon-icon {
+  opacity: 0;
+}
+
+/* 🧷 CV Button Styling */
+.cv-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  color: black;
+  background-color: transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.25;
+}
+.cv-button:hover {
+  transform: scale(1.05);
+  background-color: var(--main-color);
+  color: var(--portfolio-bg-color);
+  border: none;
+}
+html.dark .cv-button {
+  color: var(--portfolio-text-color);
+  border: 1px solid var(--portfolio-text-color);
+}
+html.dark .cv-button:hover {
+  background-color: var(--portfolio-text-color);
+  color: var(--portfolio-bg-color);
+  border: none;
+}
+
+/* 📱 Responsive Button Sizes */
+@media (max-width: 640px) {
+  .cv-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+  }
+}
+@media (min-width: 768px) {
+  .cv-button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* 🧩 Optional: Reusable Scrollbar Utility */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-color) transparent;
+}
+.scrollbar-custom::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 9999px;
+}
