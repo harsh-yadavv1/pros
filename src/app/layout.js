@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "../styles/globals.css";
-import "../styles/portfolio.css";
+import "@/styles/globals.css";
+import "@/styles/portfolio.css";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
 import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker";
@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="manifest" href="/icons/site.webmanifest" />
 
-        <title>Harsh | Portfolio</title>
+        <title>Portfolio | Harsh</title>
       </head>
 
       <body className="portfolio-theme antialiased">

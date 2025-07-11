@@ -1,11 +1,16 @@
 // src/app/[slug]/layout.js
 
-import "../../styles/globals.css";
-import "../../styles/portfolio.css";
+import "@/styles/globals.css";
+import "@/styles/portfolio.css";
 import { ThemeProvider } from "next-themes";
 
-// ✅ DO NOT declare <html> or <body> in nested layout
-// Let /app/layout.js handle that once globally
+// ✅ Viewport export (used for themeColor, width, etc.)
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf7f3" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+  ],
+};
 
 export const metadata = {
   title: "Blog Post | Harsh",

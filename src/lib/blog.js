@@ -2,6 +2,18 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
+function formatDate(dateStr) {
+  try {
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
+}
+
 // ✅ Get all posts using index.json and public folder
 export async function getAllPosts() {
   const baseUrl =
@@ -27,6 +39,7 @@ export async function getAllPosts() {
             slug,
             title: data.title || "Untitled Post",
             date: data.date || null,
+            formattedDate: data.date ? formatDate(data.date) : null,
             description: data.description || "",
             image: data.image || null,
             author: data.author || "Unknown",
@@ -68,7 +81,17 @@ export async function getPostBySlug(slug) {
     return {
       slug,
       contentHtml,
-      ...data,
+      date: data.date || null,
+      formattedDate: data.date ? formatDate(data.date) : null,
+      title: data.title || "Untitled Post",
+      description: data.description || "",
+      image: data.image || null,
+      author: data.author || "Unknown",
+      category: data.category || "General",
+      views: data.views || 0,
+      readingTime: data.readingTime || "3 min read",
+      tags: data.tags || [],
+      badge: data.badge || null,
     };
   } catch (err) {
     console.error("Failed to load post by slug:", slug, err);
