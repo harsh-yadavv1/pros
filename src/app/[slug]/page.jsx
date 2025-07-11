@@ -90,20 +90,20 @@ export default async function BlogPostPage(props) {
           </h1>
 
           {/* Meta Info */}
-          <div className="flex items-center gap-4 text-sm text-[var(--portfolio-text-color)]/60 border-b border-[var(--portfolio-text-color)]/10 pb-4 mb-6">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 text-sm text-[var(--portfolio-text-color)]/60 border-b border-[var(--portfolio-text-color)]/10 pb-4 mb-6">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-[var(--main-color)] text-[var(--portfolio-bg-color)] text-xs font-semibold flex items-center justify-center">
                 H
               </div>
               <span>Admin</span>
             </div>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>{post.formattedDate}</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>{post.readingTime || "3 min read"}</span>
-            <span className="ml-auto">
+            <div className="w-full sm:w-auto sm:ml-auto mt-2 sm:mt-0">
               <ShareButton title={post.title} />
-            </span>
+            </div>
           </div>
 
           {/* Badge */}
