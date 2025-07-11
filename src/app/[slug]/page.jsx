@@ -115,18 +115,17 @@ export default async function BlogPostPage(props) {
 
           {/* Cover Image */}
           {post.image && (
-  <div className="w-full mb-8">
-    <Image
-      src={post.image}
-      alt={post.title}
-      width={800}
-      height={500} // Just a hint — Next.js adjusts it responsively
-      className="rounded-md w-full h-auto"
-      priority
-    />
-  </div>
-)}
-
+            <div className="w-full mb-8">
+              <Image
+                src={post.image}
+                alt={post.title}
+                width={800}
+                height={500} // Just a hint — Next.js adjusts it responsively
+                className="rounded-md w-full h-auto"
+                priority
+              />
+            </div>
+          )}
 
           {/* Post Body (sanitized HTML content) */}
           <div
