@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.heyharsh.com/sitemap
+<<<<<<< HEAD
+=======
+
+>>>>>>> ffc9014 (Added sitemap, new blog posts, and SEO update)
