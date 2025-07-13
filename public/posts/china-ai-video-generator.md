@@ -16,7 +16,6 @@ tags:
   - Free AI Tools
 ---
 
-
 China has just released a groundbreaking AI video generator that’s shaking up the internet. It not only creates realistic videos with lip sync and audio, but it’s also completely free and open source — putting premium tools like VO3 and ChatGPT to shame.
 
 ---
