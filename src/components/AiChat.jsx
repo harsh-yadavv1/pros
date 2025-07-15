@@ -1,3 +1,4 @@
+// src\components\AiChat.jsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -82,7 +83,7 @@ export default function AiChat({ onClose }) {
           <div className="text-center text-[var(--text-light)] mt-20">
             <div className="mb-4 flex justify-center">
               <img
-                src="/harshai.png"
+                src="/images/harshai.png"
                 alt="HarshAI Logo"
                 className="w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-md"
               />

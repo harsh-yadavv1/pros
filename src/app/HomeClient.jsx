@@ -60,7 +60,7 @@ export default function HomeClient() {
           aria-label="Toggle AI Chat"
         >
           <img
-            src="/harshai.png"
+            src="/images/harshai.png"
             alt="HarshAI"
             className="w-full object-cover"
           />
