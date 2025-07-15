@@ -63,7 +63,7 @@ const HeroSection = () => {
           </a>
 
           <a
-            href="https://drive.google.com/file/d/11gVz3F0wuV5_6R-K0kM-XvW6GH-8Cogc/view"
+            href="https://drive.google.com/file/d/1LeWdWKhzTTwpIUtuUGd_Say92bfmPhKr/view?usp=sharing"
             className="cv-button will-change-transform"
             target="_blank"
             rel="noopener noreferrer"
